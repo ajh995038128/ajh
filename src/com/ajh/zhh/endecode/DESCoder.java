@@ -21,7 +21,7 @@ import javax.crypto.spec.SecretKeySpec;
  * 具体内容 需要关注 JDK Document http://.../docs/technotes/guides/security/SunProviders.html
  * </pre>
  * 
- * @author 梁栋
+ * @author benjamin 2013/7/10
  * @version 1.0
  * @since 1.0
  */

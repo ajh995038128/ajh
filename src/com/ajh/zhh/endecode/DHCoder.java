@@ -19,7 +19,7 @@ import javax.crypto.spec.DHParameterSpec;
 /**
  * DH安全编码组件
  * 
- * @author 梁栋
+ * @author benjamin 2013/7/10
  * @version 1.0
  * @since 1.0
  */
