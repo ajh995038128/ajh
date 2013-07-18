@@ -23,6 +23,7 @@
   23    * questions.
   24    */
 package com.ajh.zhh.endecode;
+
 import java.io.OutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -41,12 +42,10 @@ import java.io.IOException;
  * @see CharacterEncoder
  * @see BASE64Decoder
  */
-public class BASE64Encoder extends CharacterEncoder
-{
+class BASE64Encoder extends CharacterEncoder {
 
 	/** this class encodes three bytes per atom. */
-	protected int bytesPerAtom()
-	{
+	protected int bytesPerAtom() {
 		return (3);
 	}
 
@@ -54,14 +53,12 @@ public class BASE64Encoder extends CharacterEncoder
 	 * this class encodes 57 bytes per line. This results in a maximum of 57/3 *
 	 * 4 or 76 characters per output line. Not counting the line termination.
 	 */
-	protected int bytesPerLine()
-	{
+	protected int bytesPerLine() {
 		return (57);
 	}
 
 	/** This array maps the characters to their 6 bit values */
-	private final static char pem_array[] =
-	{
+	private final static char pem_array[] = {
 			// 0 1 2 3 4 5 6 7
 			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', // 0
 			'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', // 1
@@ -79,11 +76,9 @@ public class BASE64Encoder extends CharacterEncoder
 	 * either one or two '=' signs to indicate padding characters.
 	 */
 	protected void encodeAtom(OutputStream outStream, byte data[], int offset,
-			int len) throws IOException
-	{
+			int len) throws IOException {
 		byte a, b, c;
-		if (len == 1)
-		{
+		if (len == 1) {
 			a = data[offset];
 			b = 0;
 			c = 0;
@@ -91,8 +86,7 @@ public class BASE64Encoder extends CharacterEncoder
 			outStream.write(pem_array[((a << 4) & 0x30) + ((b >>> 4) & 0xf)]);
 			outStream.write('=');
 			outStream.write('=');
-		} else if (len == 2)
-		{
+		} else if (len == 2) {
 			a = data[offset];
 			b = data[offset + 1];
 			c = 0;
@@ -100,8 +94,7 @@ public class BASE64Encoder extends CharacterEncoder
 			outStream.write(pem_array[((a << 4) & 0x30) + ((b >>> 4) & 0xf)]);
 			outStream.write(pem_array[((b << 2) & 0x3c) + ((c >>> 6) & 0x3)]);
 			outStream.write('=');
-		} else
-		{
+		} else {
 			a = data[offset];
 			b = data[offset + 1];
 			c = data[offset + 2];

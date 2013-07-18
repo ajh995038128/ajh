@@ -1,4 +1,5 @@
 package com.ajh.zhh.endecode;
+
 import java.security.MessageDigest;
 
 import javax.crypto.KeyGenerator;
@@ -6,8 +7,7 @@ import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-  
-/** 
+  /** 
  * 基础加密组件 
  *  
  * @author benjamin 2013/7/10
