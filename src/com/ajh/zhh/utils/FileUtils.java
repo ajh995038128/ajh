@@ -1,6 +1,10 @@
 package com.ajh.zhh.utils;
+
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.ajh.zhh.endecode.Coder;
@@ -31,12 +35,23 @@ public class FileUtils {
 		return encodeedStr;
 	}
 
-	public static byte[] decode(String encodeStr) {
+	public static byte[] decodeToByteArray(String encodeStr) {
 		try {
 			return Coder.decryptBASE64(encodeStr);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static File decodeToFile(String encodeStr, String filename)
+			throws IOException {
+		final byte[] buffer = decodeToByteArray(encodeStr);
+		File file = new File(filename);
+		FileOutputStream fos = new FileOutputStream(file);
+		fos.write(buffer, 0, buffer.length);
+		fos.close();
+		return null;
+
 	}
 }
