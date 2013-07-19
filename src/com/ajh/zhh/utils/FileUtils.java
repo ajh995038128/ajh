@@ -98,4 +98,30 @@ public class FileUtils {
 	public static String decodeToString(String encodeStr) {
 		return new String(decodeToByteArray(encodeStr));
 	}
+
+	public static String getTxtType(String path) throws IOException {
+		return getTxtType(new File(path));
+	}
+
+	public static String getTxtType(File file) throws IOException {
+
+		return getTxtType(new FileInputStream(file));
+	}
+
+	public static String getTxtType(InputStream inputStream) throws IOException {
+		byte[] head = new byte[3];
+		inputStream.read(head);
+		String code = "";
+		code = "gb2312";
+		if (head[0] == -1 && head[2] == -2) {
+			code = "UTF-16";
+		}
+		if (head[0] == -2 && head[2] == -1) {
+			code = "Unicode";
+		}
+		if (head[0] == -17 && head[2] == -69) {
+			code = "UTF-8";
+		}
+		return code;
+	}
 }

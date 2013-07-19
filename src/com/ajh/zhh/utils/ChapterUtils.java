@@ -39,8 +39,10 @@ public class ChapterUtils {
 			throws IOException {
 		final List<String> chapters = new ArrayList<String>();
 		InputStreamReader isr = null;
+		String charset = FileUtils.getTxtType(fileInputStream);
+		System.out.println(charset);
 		try {
-			isr = new InputStreamReader(fileInputStream, "gbk");
+			isr = new InputStreamReader(fileInputStream, charset);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
