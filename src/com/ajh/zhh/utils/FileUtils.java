@@ -1,5 +1,6 @@
 package com.ajh.zhh.utils;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -109,19 +110,23 @@ public class FileUtils {
 	}
 
 	public static String getTxtType(InputStream inputStream) throws IOException {
-		byte[] head = new byte[3];
-		inputStream.read(head);
-		String code = "";
-		code = "gb2312";
-		if (head[0] == -1 && head[2] == -2) {
-			code = "UTF-16";
-		}
-		if (head[0] == -2 && head[2] == -1) {
-			code = "Unicode";
-		}
-		if (head[0] == -17 && head[2] == -69) {
+		int p = (inputStream.read() << 8) + inputStream.read();
+		String code = null;
+
+		switch (p) {
+		case 0xefbb:
 			code = "UTF-8";
+			break;
+		case 0xfffe:
+			code = "Unicode";
+			break;
+		case 0xfeff:
+			code = "UTF-16BE";
+			break;
+		default:
+			code = "GBK";
 		}
+
 		return code;
 	}
 }
