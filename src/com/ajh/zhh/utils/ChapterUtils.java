@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class ChapterUtils {
 	private final static String zore = "(零|〇)";
 	private final static String one = "(一|二|三|四|五|六|七|八|九)";
-	private final static String ten = "(" + one + "十" + one + "?" + ")";
+	private final static String ten = "(" + one + "?" + "十" + one + "?" + ")";
 	private final static String hundred = "(" + one + "百((" + ten + "+" + ")|("
 			+ zore + one + "))" + ")";
 	private final static String thousand = "(" + one + "千(" + hundred + "|("
