@@ -100,16 +100,16 @@ public class FileUtils {
 		return new String(decodeToByteArray(encodeStr));
 	}
 
-	public static String getTxtType(String path) throws IOException {
-		return getTxtType(new File(path));
+	public static String getTxtCharest(String path) throws IOException {
+		return getTxtCharest(new File(path));
 	}
 
-	public static String getTxtType(File file) throws IOException {
+	public static String getTxtCharest(File file) throws IOException {
 
-		return getTxtType(new FileInputStream(file));
+		return getTxtCharest(new FileInputStream(file));
 	}
 
-	public static String getTxtType(InputStream inputStream) throws IOException {
+	public static String getTxtCharest(InputStream inputStream) throws IOException {
 		int p = (inputStream.read() << 8) + inputStream.read();
 		String code = null;
 

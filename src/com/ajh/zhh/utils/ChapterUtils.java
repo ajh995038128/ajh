@@ -39,7 +39,7 @@ public class ChapterUtils {
 			throws IOException {
 		final List<String> chapters = new ArrayList<String>();
 		InputStreamReader isr = null;
-		String charset = FileUtils.getTxtType(fileInputStream);
+		String charset = FileUtils.getTxtCharest(fileInputStream);
 		System.out.println(charset);
 		try {
 			isr = new InputStreamReader(fileInputStream, charset);
